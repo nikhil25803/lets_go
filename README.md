@@ -1,8 +1,8 @@
 ### Go lang
 
-*Go lang* is a compiled language, but it can run file directly, without VM. Similarity with lots of languages like C, Java and Pascal.
+*Go lang* is a compiled language, but it can run files directly, without VM. Similarity with lots of languages like C, Java, and Pascal.
 
-It is not an object-oriented language but do have structs, which is an alternative to classes.
+It is not an object-oriented language but does have structures, which is an alternative to classes.
 
 Executables are different for OS.
 
@@ -13,7 +13,7 @@ Widely used in Cloud infrastructure, dropbox, etc.
 
 ### Setup
 
-After installation, create a folder with name `HelloWorld` and create a `main.go` file in it. 
+After installation, create a folder with the name `HelloWorld` and create a `main.go` file in it.
 
 Now change your directory to the `HelloWorld` folder and run the following command in the bash
 ```bash
@@ -30,7 +30,7 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("Bye World")
+fmt.Println("Bye World")
 }
 
 ```
@@ -41,7 +41,7 @@ To execute the file run `go run main.go` in the terminal.
 
 ### Types in Go lang.
 
-Types are case sensitive, valirable type should be known in advance. Almost everything in Go lang is type.
+Types are case-sensitive, and variable types should be known in advance. Almost everything in Go lang is typed.
 
 + String
 + Bool
@@ -59,7 +59,7 @@ Types are case sensitive, valirable type should be known in advance. Almost ever
 ----
 
 ### Builds in Go
-Type `go env` in the command line and you will find a list of declared variables. One of them is `GOOS`.  It is different for different os
+Type `go env` in the command line and you will find a list of declared variables. One of them is `GOOS`. It is different for different os
 ```go
 // For Linux
 GOOS = "linux"
@@ -76,27 +76,59 @@ To build a file for a specific OS. Run the following command in the command line
 GOOS = "linux" go build
 ```
 
-This build build the `main.go` file in the root directory.
+This build builds the `main.go` file in the root directory.
 
---- 
+---
 
 ### Memory in Golang.
-In Goolang, memory allocation and deallocation happens automatically.
+In Goolang, memory allocation, and deallocation happen automatically.
 
 + `new()`
-	+ Allocate memory but no INIT
-	+ Returns a memory address
-	+ Zeroed usage - initiallyy we can not put any data.
++ Allocate memory but no INIT
++ Returns a memory address
++ Zeroed usage - initially we can not put any data.
 + `make()`
-	+ Allocate memory and INIT
-	+ One will get a memory address
-	+ Non zeroed usage
++ Allocate memory and INIT
++ One will get a memory address
++ Non-zeroed usage
 
 ----
 
 ### Pointers in Go.
 Why does it exist?
 
-Most of the language have some common problem, and that is that when we create a variable in a program which is nothing but a reference to a address. So when we use it, sometimes it creates a copy of the address and create irregularities in the program.
+Most languages have some common problem, and that is that when we create a variable in a program that is nothing but a reference to an address. So when we use it, sometimes it creates a copy of the address and creates irregularities in the program.
 
-So using pointer, when we pass a resource as a pointer. It ensures that the actual value is passed from the memory.
+So using a pointer, when we pass a resource as a pointer. It ensures that the actual value is passed from the memory.
+
+
+----
+### Defer in Golang.
+In `Golang`, the `defer` keyword is used to *delay* the execution of a function or a statement until the nearby function returns.
+
+In simple words, `defer` will move the execution of the statement to the very end of a function.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+fmt.Println("Welcome to Defers in Golang")
+greet()
+}
+
+func greet() {
+defer fmt.Println("World")
+fmt.Println("Hello")
+}
+
+```
+When we call the `greet()` function, the `fmt.Println("World")` should have been invoked first but as it contains the keyword `defer`, it will delay it and execute `fmt.Println("Hello")` first.
+
+> Output
+```bash
+Welcome to Defers in Golang
+Hello
+World
+```
