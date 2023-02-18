@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 // Declare some constants value
+
 const LoginToken string = "This is a token"
 
 func main() {

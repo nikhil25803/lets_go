@@ -22,9 +22,15 @@ app.get('/get', (req, res) => {
 app.post('/post', (req, res) => {
     res.status(200)
         .json({
-            message: "You made a Post request successfully"
+            message: req.body
         })
 })
+
+app.post('/postForm', (req, res) => {
+    res.status(200)
+        .send(JSON.stringify(req.body))
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
